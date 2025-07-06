@@ -1,13 +1,17 @@
 package main
 
 import (
-	"github.com/phantomsoldierking/learn_golang/CRM/database"
+	"fmt"
+
 	"github.com/gofiber/fiber"
+	"github.com/jinzhu/gorm"
+	"github.com/phantomsoldierking/learn_golang/CRM/database"
+	"github.com/phantomsoldierking/learn_golang/CRM/lead"
 )
 
 func setupRoutes(app *fiber.App) {
-	app.Get("/api/v1/lead" ,lead.GetLeads)
-	app.Get("/api/v1/lead/:id", lead.GetLeas)
+	app.Get("/api/v1/lead", lead.GetLeads)
+	app.Get("/api/v1/lead/:id", lead.GetLead)
 	app.Post("/api/v1/lead", lead.NewLead)
 	app.Delete("/api/v1/lead/:id", lead.DeleteLead)
 }
@@ -23,7 +27,7 @@ func initDatabase() {
 	fmt.Println("Database Migrated")
 }
 
-func main () {
+func main() {
 	app := fiber.New()
 	initDatabase()
 	setupRoutes(app)
