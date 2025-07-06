@@ -1,4 +1,4 @@
-module go-bookstore
+module github.com/phantomsoldierking/learn_golang/Mysql_book_system
 
 go 1.24.4
 
