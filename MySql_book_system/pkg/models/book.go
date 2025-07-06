@@ -1,16 +1,16 @@
 package models
 
 import (
-	"github.com/phantomsoldierking/learn_golang/Mysql_book_system"
 	"github.com/jinzhu/gorm"
+	"github.com/phantomsoldierking/learn_golang/Mysql_book_system/pkg/config"
 )
 
 var db *gorm.DB
 
 type Book struct {
 	gorm.Model
-	Name string `gorm:""json:"name"`
-	Author string `json:"author"`
+	Name        string `gorm:"" json:"name"`
+	Author      string `json:"author"`
 	Publication string `json:"publication"`
 }
 
@@ -23,7 +23,7 @@ func init() {
 func (b *Book) CreateBook() *Book {
 	db.NewRecord(b)
 	db.Create(&b)
-	return b 
+	return b
 }
 
 func GetAllBooks() []Book {
@@ -43,4 +43,3 @@ func DeleteBook(ID int64) Book {
 	db.Where("ID=?", ID).Delete(book)
 	return book
 }
-
